@@ -1,125 +1,250 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(HomePage());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyCard(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class MyCard extends StatefulWidget {
+  const MyCard({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyCard> createState() => _MyCardState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class _MyCardState extends State<MyCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("My Card"),
+      ),
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 10.0),
+        color: Colors.blue[400],
+        child: Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                //backgroundImage: AssetImage("assets/images/DanielJPEG.jpeg"),
+                radius: 60,
+                backgroundColor: Colors.black,
+                child: Text(
+                  'MF',
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    color: Colors.blue[400],
+                    fontWeight: FontWeight.bold
+                    ),
+                    ),
+                //child: Image.asset("assets/images/DanielJPEG.jpeg"),
+              ),
+              ListTile(
+                titleAlignment: ListTileTitleAlignment.center,
+                title: Center(
+                  child: Text(
+                    "Mañuico Flores, Roly",
+                    style: TextStyle(
+                        fontFamily: "tektur", fontWeight: FontWeight.bold),
+                  ),
+                ),
+                subtitle: Text(
+                  "developer flutter",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontFamily: "tektur", fontSize: 18.0),
+                ),
+              ),
+              Divider(
+                thickness: 0.7,
+                color: Colors.black,
+                indent: 20.0,
+                endIndent: 20.0,
+              ),
+              Card(
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(Icons.phone),
+                  title: Text("+51 967 743 864"),
+                  subtitle: Text("Telefono"),
+                  trailing: Icon(Icons.check_circle_outline),
+                ),
+              ),
+              Card(
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(Icons.email),
+                  title: Text("systemgroup.peru@gmail.com",style: TextStyle(fontSize: 14.0),),
+                  subtitle: Text("Correo electronico"),
+                  trailing: Icon(Icons.check_circle_outline),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/facebook.png",
+                    height: 60.0,
+                  ),
+                  SizedBox(
+                    width: 30.0,
+                  ),
+                  Image.asset(
+                    "assets/images/instagram.png",
+                    height: 60.0,
+                  ),
+                  SizedBox(
+                    width: 30.0,
+                  ),
+                  Image.asset(
+                    "assets/images/twitter.png",
+                    height: 60.0,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
+}
+
+class calcularIBM extends StatefulWidget {
+  const calcularIBM({super.key});
+
+  @override
+  State<calcularIBM> createState() => _calcularIBMState();
+}
+
+class _calcularIBMState extends State<calcularIBM> {
+  final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    primary: Colors.black87,
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2)),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        centerTitle: true,
+        title: const Text("Calcular la masa corporal"),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+        child: Center(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Altura :",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    "200 cm",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Slider(value: 0, onChanged: (value) {}),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Peso :",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text(
+                    "60 kg",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              Slider(value: 0, onChanged: (value) {}),
+              //TextButton(
+              //  style: ButtonStyle(),
+              //  onPressed: () {
+              //    print("clcik");
+              //  },
+              //  child: Text('TextButton'),
+              //),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 40.0),
+                  primary: Colors.blue, // background
+                  onPrimary: Colors.white, // foreground
+                ),
+                onPressed: () {},
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.save),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text('Calcular'),
+                  ],
+                ),
+              ),
+              Padding(padding: EdgeInsets.all(10.0)),
+              Text(
+                "70",
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              ListTile(
+                title: Center(
+                  child: Text("Saludable"),
+                ),
+                subtitle: Center(
+                  child: Text("Se enciente en buen estado"),
+                ),
+              ),
+              SvgPicture.asset("assets/images/imagen1.svg",
+                  height: 150.0, fit: BoxFit.contain),
+//              Image(image: SvgPicture("assets/images/imagen1.svg"),)
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
